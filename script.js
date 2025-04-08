@@ -1,4 +1,4 @@
-// Create sketchContainer
+// Create elements
 const heading = document.createElement("h1");
 heading.textContent = "etch-a-sketch";
 
@@ -15,6 +15,8 @@ promptLabel.textContent = "Squares per side:";
 const promptInput = document.createElement("input");
 promptInput.type = "number";
 promptInput.name = "row-count";
+promptInput.min = "1";
+promptInput.max = "100";
 const promptSubmit = document.createElement("input");
 promptSubmit.type = "button";
 promptSubmit.value = "Submit";
@@ -24,14 +26,14 @@ promptForm.appendChild(promptLabel);
 promptForm.appendChild(promptSubmit);
 
 
-
-
 // Create 16x16 square divs
 for(let i = 1; i <= 16; i++) {
     for(let j = 1; j <= 16; j++) {
         let squareDiv = document.createElement("div");
-        //squareDiv.id = `${i}x${j}`;
         squareDiv.classList.add("squareDiv");
+        squareDiv.addEventListener("mouseover", (x) => {
+            x.target.style.backgroundColor = "red";
+        });
         sketchContainer.appendChild(squareDiv);
     }
 }
@@ -112,8 +114,7 @@ document.body.appendChild(promptContainer);
 promptContainer.appendChild(promptForm);
 document.head.appendChild(styles);
 
-// Event Listeners
-
+// createCustomGrid()
 promptSubmit.addEventListener("click", () => {
     createCustomGrid();
 });
@@ -127,6 +128,9 @@ function createCustomGrid() {
         for(let j = 1; j <= rowCount; j++) {
             let squareDiv = document.createElement("div");
             squareDiv.classList.add("squareDiv");
+            squareDiv.addEventListener("mouseover", (x) => {
+                x.target.style.backgroundColor = "red";
+            });
             sketchContainer.appendChild(squareDiv);
         }
     }
@@ -194,8 +198,3 @@ function createCustomGrid() {
 }
 
 
-for(let i = 1; i <= 16; i++) {
-    for(let j = 1; j <= 16; j++) {
-        //let editSquareDiv = document.getElementById(`${i}x${j}`);
-    }
-}
